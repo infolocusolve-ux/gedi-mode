@@ -20,6 +20,20 @@ You can start editing the page by modifying `app/page.tsx`. The page auto-update
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
+## Live "ON GEDI" presence counter (optional)
+
+The landing screen shows a live count of visitors currently on a Gedi, powered by Supabase Realtime Presence. It's optional — without configuration the app runs normally and the counter falls back to a static "GEDI LIVE" label instead of a number.
+
+To enable it:
+
+1. Create or select a project at the [Supabase dashboard](https://supabase.com/dashboard).
+2. Copy **Project Settings → API → Project URL** and **Project Settings → API → anon public (publishable) key**.
+3. Copy `.env.example` to `.env.local` and fill in `NEXT_PUBLIC_SUPABASE_URL` and `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY` with those values.
+4. Confirm Realtime is enabled for the project (**Project Settings → Realtime** — on by default for new projects).
+5. Add both variables to your deployment platform's environment settings as well (e.g. Vercel → Project Settings → Environment Variables).
+
+Never put the `service_role` / secret key in `NEXT_PUBLIC_*` variables or any client code — only the publishable key is safe to expose in the browser. See `.env.example` for details.
+
 ## Learn More
 
 To learn more about Next.js, take a look at the following resources:

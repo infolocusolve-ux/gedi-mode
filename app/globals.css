@@ -1,26 +1,60 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --gedi-black: #050506;
+  --gedi-charcoal: #16161a;
+  --gedi-midnight: #0d1420;
+  --gedi-amber: #c98a44;
+  --gedi-amber-soft: #c98a4433;
+  --gedi-taillight: #8a2f2a;
+  --gedi-offwhite: #efe9e0;
+  --gedi-ink: #241a12;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --color-gedi-black: var(--gedi-black);
+  --color-gedi-charcoal: var(--gedi-charcoal);
+  --color-gedi-midnight: var(--gedi-midnight);
+  --color-gedi-amber: var(--gedi-amber);
+  --color-gedi-taillight: var(--gedi-taillight);
+  --color-gedi-offwhite: var(--gedi-offwhite);
+  --color-gedi-ink: var(--gedi-ink);
+  --font-sans: var(--font-manrope);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--gedi-black);
+  color: var(--gedi-offwhite);
+}
+
+.font-gurmukhi {
+  font-family: var(--font-gurmukhi), var(--font-manrope), sans-serif;
+}
+
+/* Subtle CSS-only film grain, kept cheap for mobile GPUs */
+.film-grain {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  opacity: 0.05;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  background-size: 180px 180px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Visible focus states for keyboard navigation */
+:focus-visible {
+  outline: 2px solid var(--gedi-amber);
+  outline-offset: 3px;
 }
